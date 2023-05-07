@@ -1,5 +1,6 @@
 import { Box, Text, render } from 'ink';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { charMap } from './mappings.js';
 
 const Counter = () => {
   return (
@@ -21,7 +22,24 @@ const Row = () => (
   </Box>
 );
 
-render(<Counter />);
+const Element = () => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex(
+        (previousCounter) => (previousCounter + 1) % Object.keys(charMap).length
+      );
+    }, 200);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  return <Text>{charMap[index]}</Text>;
+};
+render(<Element />);
 
 function perc2color(perc) {
   let r, g;

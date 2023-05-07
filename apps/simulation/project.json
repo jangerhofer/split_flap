@@ -12,7 +12,7 @@
         "platform": "node",
         "outputPath": "dist/apps/simulation",
         "format": ["esm"],
-        "bundle": false,
+        "bundle": true,
         "main": "apps/simulation/src/main.tsx",
         "tsConfig": "apps/simulation/tsconfig.app.json",
         "assets": ["apps/simulation/src/assets"],
