@@ -1,28 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { Box, render, Text } from 'ink';
+import { Box, Text, render } from 'ink';
+import React from 'react';
 
 const Counter = () => {
-  const [counter, setCounter] = useState(0);
-
   return (
-    <>
-      <Box width={14}>
-        {Array.from({ length: 14 }).map((_, i, els) => (
-          <Box key={i.toString()}>
-            <Text backgroundColor={perc2color(100 * (i / els.length))}> </Text>
-          </Box>
-        ))}
-      </Box>
-    </>
+    <Box flexDirection="column" gap={1}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Row key={i.toString()} />
+      ))}
+    </Box>
   );
 };
+
+const Row = () => (
+  <Box width={100} gap={1}>
+    {Array.from({ length: 14 }).map((_, i, els) => (
+      <Box width={1} key={i.toString()}>
+        <Text backgroundColor={perc2color(100 * (i / els.length))}> </Text>
+      </Box>
+    ))}
+  </Box>
+);
 
 render(<Counter />);
 
 function perc2color(perc) {
-  let r,
-    g,
-    b = 0;
+  let r, g;
+  const b = 0;
   if (perc < 50) {
     r = 255;
     g = Math.round(5.1 * perc);
